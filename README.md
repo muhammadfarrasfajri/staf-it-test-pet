@@ -113,6 +113,7 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek ini di lingkungan lokal A
 7. **Jalankan Server Lokal:**
 
     Buka dua terminal terpisah dan jalankan perintah berikut:
+    
     _Terminal 1 (Backend):_
 
     ```
