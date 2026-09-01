@@ -61,7 +61,7 @@ Sistem ini menggunakan arsitektur relasional dengan struktur entitas utama sebag
 
 ### Entity Relationship Diagram (ERD)
 
-````mermaid
+```mermaid
 erDiagram
     USERS ||--o{ AUDIT_LOGS : "mencatat (1 to Many)"
     EMPLOYEES ||--o{ TASKS : "ditugaskan sebagai PIC (1 to Many)"
@@ -109,6 +109,8 @@ erDiagram
         json data
         datetime read_at
     }
+```
+
 ---
 
 ## 🚀 Panduan Instalasi (Local Development)
