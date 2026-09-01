@@ -99,6 +99,8 @@ erDiagram
         json new_values
     }
 
+---
+
 ## 🚀 Panduan Instalasi (Local Development)
 
 Ikuti langkah-langkah berikut untuk menjalankan proyek ini di lingkungan lokal Anda.
