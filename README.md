@@ -60,7 +60,7 @@ Sistem ini menggunakan arsitektur relasional dengan struktur entitas utama sebag
 
 ### Entity Relationship Diagram (ERD)
 
-````mermaid
+```mermaid
 erDiagram
     USERS ||--o{ AUDIT_LOGS : "mencatat (1 to Many)"
     EMPLOYEES ||--o{ TASKS : "ditugaskan sebagai PIC (1 to Many)"
@@ -98,6 +98,7 @@ erDiagram
         json old_values
         json new_values
     }
+```
 
 ---
 
@@ -170,4 +171,7 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek ini di lingkungan lokal A
 8. **Akses Aplikasi:**
 
     Buka browser dan navigasikan ke http://localhost:8000.
-````
+
+```
+
+```
