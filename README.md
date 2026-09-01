@@ -170,8 +170,8 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek ini di lingkungan lokal A
 
 8. **Akses Aplikasi:**
 
-    Buka browser dan navigasikan ke http://localhost:8000.
+    Buka browser dan navigasikan ke
 
-```
-
-```
+    ```
+    http://localhost:8000.
+    ```
