@@ -57,13 +57,15 @@ Sistem ini menggunakan arsitektur relasional dengan struktur entitas utama sebag
 - `employees` - Menyimpan profil operasional karyawan (ID, NIK, Departemen, Jabatan).
 - `tasks` - Menyimpan rincian pekerjaan. Berelasi _Many-to-One_ ke tabel `employees` via `pic_id`.
 - `audit_logs` - Mencatat log histori aplikasi. Berelasi ke tabel `users` via `user_id`.
+- `notifications` - Tabel bawaan sistem untuk menyimpan data notifikasi (seperti peringatan _deadline_) secara _real-time_ untuk setiap _user_.
 
 ### Entity Relationship Diagram (ERD)
 
-```mermaid
+````mermaid
 erDiagram
     USERS ||--o{ AUDIT_LOGS : "mencatat (1 to Many)"
     EMPLOYEES ||--o{ TASKS : "ditugaskan sebagai PIC (1 to Many)"
+    USERS ||--o{ NOTIFICATIONS : "menerima (1 to Many)"
 
     USERS {
         bigint id PK
@@ -98,8 +100,15 @@ erDiagram
         json old_values
         json new_values
     }
-```
 
+    NOTIFICATIONS {
+        uuid id PK
+        string type
+        string notifiable_type
+        bigint notifiable_id FK
+        json data
+        datetime read_at
+    }
 ---
 
 ## 🚀 Panduan Instalasi (Local Development)
@@ -175,3 +184,4 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek ini di lingkungan lokal A
     ```
     http://localhost:8000.
     ```
+````
