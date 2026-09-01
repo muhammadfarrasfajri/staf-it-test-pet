@@ -58,6 +58,47 @@ Sistem ini menggunakan arsitektur relasional dengan struktur entitas utama sebag
 - `tasks` - Menyimpan rincian pekerjaan. Berelasi _Many-to-One_ ke tabel `employees` via `pic_id`.
 - `audit_logs` - Mencatat log histori aplikasi. Berelasi ke tabel `users` via `user_id`.
 
+
+### Entity Relationship Diagram (ERD)
+
+```mermaid
+erDiagram
+    USERS ||--o{ AUDIT_LOGS : "mencatat (1 to Many)"
+    EMPLOYEES ||--o{ TASKS : "ditugaskan sebagai PIC (1 to Many)"
+    
+    USERS {
+        bigint id PK
+        string name
+        string email
+        string password
+    }
+    
+    EMPLOYEES {
+        bigint id PK
+        string nik
+        string nama_lengkap
+        string departemen
+        string jabatan
+        boolean status_aktif
+    }
+    
+    TASKS {
+        bigint id PK
+        bigint pic_id FK
+        string judul_tugas
+        text deskripsi
+        string status
+        datetime deadline
+    }
+    
+    AUDIT_LOGS {
+        bigint id PK
+        bigint user_id FK
+        string action
+        string table_name
+        json old_values
+        json new_values
+    }
 ---
 
 ## 🚀 Panduan Instalasi (Local Development)
