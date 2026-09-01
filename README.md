@@ -51,36 +51,30 @@ Sistem ini memastikan transparansi tugas, pelacakan tenggat waktu secara _real-t
 
 ## 🗄️ Arsitektur Basis Data
 
-Sistem ini menggunakan arsitektur relasional dengan struktur entitas utama sebagai berikut:
+Sistem ini menggunakan arsitektur relasional yang efisien dengan struktur entitas utama sebagai berikut:
 
-- `users` - Menyimpan data kredensial login (ID, Nama, Email, Password).
-- `employees` - Menyimpan profil operasional karyawan (ID, NIK, Departemen, Jabatan).
-- `tasks` - Menyimpan rincian pekerjaan. Berelasi _Many-to-One_ ke tabel `employees` via `pic_id`.
+- `users` - Berfungsi ganda sebagai penyimpan data kredensial login sekaligus profil operasional karyawan (menyimpan `employee_id`, `department`, `position`, dan `status`).
+- `tasks` - Menyimpan rincian pekerjaan. Berelasi _Many-to-One_ ke tabel `users` (sebagai karyawan/PIC) via kolom `pic_id`.
 - `audit_logs` - Mencatat log histori aplikasi. Berelasi ke tabel `users` via `user_id`.
-- `notifications` - Tabel bawaan sistem untuk menyimpan data notifikasi (seperti peringatan _deadline_) secara _real-time_ untuk setiap _user_.
+- `notifications` - Tabel sistem untuk menyimpan data notifikasi peringatan _deadline_ secara _real-time_ untuk setiap pengguna.
 
 ### Entity Relationship Diagram (ERD)
 
 ```mermaid
 erDiagram
-    USERS ||--o{ AUDIT_LOGS : "mencatat (1 to Many)"
-    EMPLOYEES ||--o{ TASKS : "ditugaskan sebagai PIC (1 to Many)"
-    USERS ||--o{ NOTIFICATIONS : "menerima (1 to Many)"
+    USERS ||--o{ TASKS : "ditugaskan sbg PIC (1 to Many)"
+    USERS ||--o{ AUDIT_LOGS : "melakukan aksi (1 to Many)"
+    USERS ||--o{ NOTIFICATIONS : "menerima peringatan (1 to Many)"
 
     USERS {
         bigint id PK
+        string employee_id
         string name
+        string department
+        string position
+        string status
         string email
         string password
-    }
-
-    EMPLOYEES {
-        bigint id PK
-        string nik
-        string nama_lengkap
-        string departemen
-        string jabatan
-        boolean status_aktif
     }
 
     TASKS {
@@ -186,4 +180,7 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek ini di lingkungan lokal A
     ```
     http://localhost:8000.
     ```
-````
+
+```
+
+```
